@@ -1,18 +1,25 @@
-import { players, test } from './test.js'
+import { increment } from './test.js'
 import * as all from './test.js'
 
-const players2 = all.players
-const test2 = all.test
+const increment2 = all.increment
 
 
-console.log(players, test)
-console.log('2',players2, test2)
-console.log('3',all.players, all.test)
+console.log('esm', increment);
+console.log('const', increment2);
+console.log('all', all.increment);
 
 
-
+const delay = 1000
 setTimeout(() => {
-    console.log(players, test)
-    console.log('2', players2, test2)
-    console.log('3',all.players, all.test)
-}, 3000)
+    console.log('esm', increment)
+    console.log('const', increment2)
+    console.log('all',all.increment)
+}, delay);
+
+(() => {
+    let { increment } = all
+    console.log('let', increment)
+    setTimeout(() => {
+        console.log('let', increment)
+    }, delay)
+})();
